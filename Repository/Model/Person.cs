@@ -6,14 +6,15 @@ namespace Repository.Model;
 
 public class Person
 {
+    [Key]
+    public long Id { get; set; }
+
     [Required]
     public string? FirstName { get; set; }
 
     [Required]
     public string? LastName { get; set; }
 
-    // The deleted column is not-nullable but there is no need to annotate it required
-    // when a default value is specified.
     public bool Deleted { get; set; } = false;
 
     public Person()

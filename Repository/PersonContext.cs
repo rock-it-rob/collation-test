@@ -4,9 +4,15 @@ namespace Repository;
 
 public class PersonContext : DbContext
 {
-    public PersonContext(DbContextOptions<PersonContext> options)
-        : base(options)
+    protected override void OnConfiguring(DbContextOptionsBuilder builder)
     {
+        var host = "localhost";
+        var username = "pi-user";
+        var password = "pi-password";
+
+        builder
+            .UseNpgsql($"Host={host};Username={username};Password={password}")
+            .UseSnakeCaseNamingConvention();
     }
 
     protected override void OnModelCreating(ModelBuilder builder)
