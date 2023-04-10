@@ -29,5 +29,10 @@ public class PersonConfiguration : IEntityTypeConfiguration<Person>
 {
     public void Configure(EntityTypeBuilder<Person> entityBuilder)
     {
+        entityBuilder
+            // Configure the partial index on the name fields where deleted is false.
+            .HasIndex(p => new { p.FirstName, p.LastName })
+            .IsUnique()
+            .HasFilter("not deleted");
     }
 }
