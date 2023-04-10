@@ -1,0 +1,9 @@
+services:
+  db:
+    image: postgres:alpine
+    environment:
+      - POSTGRESDB=partial-index-db
+      - POSTGRES_USER=pi-user
+      - POSTGRES_PASSWORD=pi-password
+    ports:
+      - "5432:5432"
