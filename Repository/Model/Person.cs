@@ -15,7 +15,7 @@ public class Person
     [Required]
     public string? LastName { get; set; }
 
-    public bool Deleted { get; set; } = false;
+    public bool Active { get; set; } = true;
 
     public Person()
     {
@@ -33,6 +33,6 @@ public class PersonConfiguration : IEntityTypeConfiguration<Person>
             // Configure the partial index on the name fields where deleted is false.
             .HasIndex(p => new { p.FirstName, p.LastName })
             .IsUnique()
-            .HasFilter("not deleted");
+            .HasFilter("active");
     }
 }
