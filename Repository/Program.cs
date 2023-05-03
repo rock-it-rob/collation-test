@@ -19,7 +19,7 @@ using (var context = new PersonContext())
     for (int i = 0; i < 2; ++i)
     {
         context.Add(
-            new Person { FirstName = "Phoenix", LastName = "Wright", Deleted = true }
+            new Person { FirstName = "Phoenix", LastName = "Wright", Active = false }
         );
     }
 
