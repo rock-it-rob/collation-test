@@ -2,12 +2,11 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Repository;
 
-public interface IRepository<TContext, TEntity, TKey>
-    where TContext : DbContext
+public interface IRepository<TEntity, TKey>
     where TEntity : class
     where TKey : notnull
 {
-    public TContext Context { get; }
+    public PersonContext Context { get; }
 
     public void Create(TEntity entity) =>
         Context.Add(entity);
@@ -20,4 +19,7 @@ public interface IRepository<TContext, TEntity, TKey>
 
     public void Delete(TEntity entity) =>
         Context.Remove(entity);
+
+    public int SaveChanges() =>
+        Context.SaveChanges();
 }

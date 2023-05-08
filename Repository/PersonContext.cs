@@ -1,9 +1,12 @@
+using Repository.Model;
 using Microsoft.EntityFrameworkCore;
 
 namespace Repository;
 
 public class PersonContext : DbContext
 {
+    public DbSet<Person> Person => Set<Person>();
+
     protected override void OnConfiguring(DbContextOptionsBuilder builder)
     {
         var host = "localhost";
