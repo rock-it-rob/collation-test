@@ -2,11 +2,8 @@ namespace Repository.Test;
 
 public abstract class AbstractTest
 {
-    protected readonly PersonRepository _personRepository;
-
-    protected IRepository<Person, long> Repository
-        => (IRepository<Person, long>)_personRepository;
+    protected PersonRepository Repository { get; }
 
     public AbstractTest()
-        => _personRepository = new PersonRepository(new PersonContext());
+        => Repository = new PersonRepository(new PersonContext());
 }

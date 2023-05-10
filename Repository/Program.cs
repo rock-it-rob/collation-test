@@ -4,8 +4,7 @@ using Repository.Model;
 
 
 using var context = new PersonContext();
-var personRepository = new PersonRepository(context);
-var repository = (IRepository<Person, long>)personRepository;
+var repository = new PersonRepository(context);
 
 // True delete of any old person records.
 repository.Context.Person.RemoveRange(repository.Context.Person);

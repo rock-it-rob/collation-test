@@ -22,7 +22,7 @@ public class PersonContext : DbContext
     {
         // Create a system-wide collation for case-insensitive matching
         // with a UCA strength of primary.
-        builder.HasCollation(new UcaStrengthPrimaryCollation());
+        builder.HasCollation(UcaStrengthPrimaryCollation.INSTANCE);
 
         // Call the entity method on each entity to fire their configuring interfaces.
         builder.ApplyConfigurationsFromAssembly(typeof(PersonContext).Assembly);

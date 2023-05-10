@@ -11,4 +11,8 @@ public sealed class UcaStrengthPrimaryCollation : ICollation
     public string Provider => "icu";
 
     public bool Deterministic => false;
+
+    private UcaStrengthPrimaryCollation()
+    {
+    }
 }
