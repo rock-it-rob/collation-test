@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Repository;
 
@@ -13,4 +14,7 @@ public static class ModelBuilderExtensions
             deterministic: collation.Deterministic
         );
     }
+
+    public static PropertyBuilder UseCollation(this PropertyBuilder propertyBuilder, ICollation collation)
+        => propertyBuilder.UseCollation(collation.Name);
 }

@@ -1,6 +1,7 @@
 using System.ComponentModel.DataAnnotations;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using Repository;
 
 namespace Repository.Model;
 
@@ -34,10 +35,10 @@ public class PersonConfiguration : IEntityTypeConfiguration<Person>
         // Set the collation type on the name fields to be case-insensitive.
         entityBuilder
             .Property(p => p.FirstName)
-            .UseCollation(UcaStrengthPrimaryCollation.INSTANCE.Name);
+            .UseCollation(UcaStrengthPrimaryCollation.INSTANCE);
         entityBuilder
             .Property(p => p.LastName)
-            .UseCollation(UcaStrengthPrimaryCollation.INSTANCE.Name);
+            .UseCollation(UcaStrengthPrimaryCollation.INSTANCE);
 
         // Configure the partial index on the name fields where deleted is false.
         entityBuilder
