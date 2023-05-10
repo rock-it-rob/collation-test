@@ -31,18 +31,13 @@ public class PersonConfiguration : IEntityTypeConfiguration<Person>
 {
     public void Configure(EntityTypeBuilder<Person> entityBuilder)
     {
-        //
-        // TODO: replace instance of collation with dependency injection.
-        //
-        var collation = new UcaStrengthPrimaryCollation();
-
         // Set the collation type on the name fields to be case-insensitive.
         entityBuilder
             .Property(p => p.FirstName)
-            .UseCollation(collation.Name);
+            .UseCollation(UcaStrengthPrimaryCollation.INSTANCE.Name);
         entityBuilder
             .Property(p => p.LastName)
-            .UseCollation(collation.Name);
+            .UseCollation(UcaStrengthPrimaryCollation.INSTANCE.Name);
 
         // Configure the partial index on the name fields where deleted is false.
         entityBuilder
