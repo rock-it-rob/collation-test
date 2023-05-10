@@ -20,6 +20,10 @@ public class PersonContext : DbContext
 
     protected override void OnModelCreating(ModelBuilder builder)
     {
+        // Create a system-wide collation for case-insensitive matching
+        // with a UCA strength of primary.
+        builder.HasCollation(new UcaStrengthPrimaryCollation());
+
         // Call the entity method on each entity to fire their configuring interfaces.
         builder.ApplyConfigurationsFromAssembly(typeof(PersonContext).Assembly);
     }

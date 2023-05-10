@@ -6,6 +6,8 @@ namespace Repository.Model;
 
 public class Person
 {
+    public static readonly string NAME_INDEX_UNIQUE = "person_names_unq";
+
     [Key]
     public long Id { get; set; }
 
@@ -29,9 +31,23 @@ public class PersonConfiguration : IEntityTypeConfiguration<Person>
 {
     public void Configure(EntityTypeBuilder<Person> entityBuilder)
     {
+        //
+        // TODO: replace instance of collation with dependency injection.
+        //
+        var collation = new UcaStrengthPrimaryCollation();
+
+        // Set the collation type on the name fields to be case-insensitive.
         entityBuilder
-            // Configure the partial index on the name fields where deleted is false.
+            .Property(p => p.FirstName)
+            .UseCollation(collation.Name);
+        entityBuilder
+            .Property(p => p.LastName)
+            .UseCollation(collation.Name);
+
+        // Configure the partial index on the name fields where deleted is false.
+        entityBuilder
             .HasIndex(p => new { p.FirstName, p.LastName })
+            .HasDatabaseName(Person.NAME_INDEX_UNIQUE)
             .IsUnique()
             .HasFilter("active");
     }
