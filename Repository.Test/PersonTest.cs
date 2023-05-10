@@ -24,12 +24,12 @@ public class PersonTest : AbstractTest
     {
         using var _ = Repository.Context.Database.BeginTransaction();
 
-        var person = new Person { FirstName = "First", LastName = " Last" };
+        var person = new Person { FirstName = "First", LastName = "Last" };
         Repository.Create(person);
         Repository.SaveChanges();
 
-        // Insert the same person again.
-        var person2 = new Person { FirstName = "First", LastName = " Last" };
+        // Insert the same person again but with different casing.
+        var person2 = new Person { FirstName = "first", LastName = "last" };
         Repository.Create(person2);
 
         // The save will throw.
