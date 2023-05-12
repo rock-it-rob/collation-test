@@ -35,10 +35,10 @@ public class PersonConfiguration : IEntityTypeConfiguration<Person>
         // Set the collation type on the name fields to be case-insensitive.
         entityBuilder
             .Property(p => p.FirstName)
-            .UseCollation(UcaStrengthPrimaryCollation.INSTANCE);
+            .UseCollation(Collations.UcaStrengthPrimaryCollation);
         entityBuilder
             .Property(p => p.LastName)
-            .UseCollation(UcaStrengthPrimaryCollation.INSTANCE);
+            .UseCollation(Collations.UcaStrengthPrimaryCollation);
 
         // Configure the partial index on the name fields where deleted is false.
         entityBuilder

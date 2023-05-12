@@ -1,12 +1,12 @@
 namespace Repository;
 
-public interface ICollation
+public sealed class Collation
 {
-    public string Name { get; }
+    public required string Name { get; init; }
 
-    public string Locale { get; }
+    public required string Locale { get; init; }
 
-    public string Provider { get; }
+    public required string Provider { get; init; }
 
-    public bool Deterministic { get; }
+    public required bool Deterministic { get; init; }
 }

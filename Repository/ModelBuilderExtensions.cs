@@ -5,16 +5,14 @@ namespace Repository;
 
 public static class ModelBuilderExtensions
 {
-    public static void HasCollation(this ModelBuilder modelBuilder, ICollation collation)
-    {
-        modelBuilder.HasCollation(
+    public static ModelBuilder HasCollation(this ModelBuilder modelBuilder, Collation collation)
+        => modelBuilder.HasCollation(
             name: collation.Name,
             locale: collation.Locale,
             provider: collation.Provider,
             deterministic: collation.Deterministic
         );
-    }
 
-    public static PropertyBuilder UseCollation(this PropertyBuilder propertyBuilder, ICollation collation)
+    public static PropertyBuilder UseCollation(this PropertyBuilder propertyBuilder, Collation collation)
         => propertyBuilder.UseCollation(collation.Name);
 }
